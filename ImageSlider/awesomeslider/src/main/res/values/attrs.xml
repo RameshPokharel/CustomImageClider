@@ -56,10 +56,18 @@
             <enum name="SWAP" value="8"/>
         </attr>
 
-        <attr name="awe_slide_animation">
-            <enum name="DEPTHTRANSFORMATION" value="1"/>
-            <enum name="FADETRANSFORMATION" value="2"/>
-            <enum name="FANTRANSFORMATION" value="3"/>
+        <attr name="awe_slider_animation">
+            <enum name="ANTICLOCKSPINTRANSFORMATION" value="0"/>
+            <enum name="CLOCK_SPINTRANSFORMATION" value="1"/>
+            <enum name="CUBEINDEPTHTRANSFORMATION" value="2"/>
+            <enum name="FADETRANSFORMATION" value="3"/>
+            <enum name="HORIZONTALFLIPTRANSFORMATION" value="4"/>
+            <enum name="POPTRANSFORMATION" value="5"/>
+            <enum name="SIMPLETRANSFORMATION" value="6"/>
+            <enum name="SPINNERTRANSFORMATION" value="7"/>
+            <enum name="VERTICALFLIPTRANSFORMATION" value="8"/>
+            <enum name="VERTICALSHUTTRANSFORMATION" value="9"/>
+            <enum name="ZOOMOUTTRANSFORMATION" value="10"/>
         </attr>
         <attr name="awe_scroll_time_sec" format="integer">
         </attr>

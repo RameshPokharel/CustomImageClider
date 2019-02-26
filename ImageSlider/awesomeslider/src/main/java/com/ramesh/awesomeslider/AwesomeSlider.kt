@@ -84,19 +84,35 @@ public class AwesomeSlider : FrameLayout, CircularSliderHandle.CurrentPageListen
         //Starting auto cycle at the time of setting up of layout
 
         var indicatorAnimations = a.getInt(R.styleable.AwesomeSlider_awe_indicator_animation, 0)
-        var sliderAnimations = a.getInt(R.styleable.AwesomeSlider_awe_slide_animation, 0)
+        var sliderAnimations = a.getInt(R.styleable.AwesomeSlider_awe_slider_animation, 0)
         //mapSlideAnimation int to enum
         var slideA =
             when (sliderAnimations) {
+                0 ->
+                    SliderAnimations.ANTICLOCKSPINTRANSFORMATION
                 1 ->
-                    SliderAnimations.DEPTHTRANSFORMATION
+                    SliderAnimations.CLOCK_SPINTRANSFORMATION
                 2 ->
-                    SliderAnimations.FADETRANSFORMATION
+                    SliderAnimations.CUBEINDEPTHTRANSFORMATION
                 3 ->
-                    SliderAnimations.FANTRANSFORMATION
+                    SliderAnimations.FADETRANSFORMATION
+                4 ->
+                    SliderAnimations.HORIZONTALFLIPTRANSFORMATION
+                5 ->
+                    SliderAnimations.POPTRANSFORMATION
+                6 ->
+                    SliderAnimations.SIMPLETRANSFORMATION
+                7 ->
+                    SliderAnimations.SPINNERTRANSFORMATION
+                8 ->
+                    SliderAnimations.VERTICALFLIPTRANSFORMATION
+                9 ->
+                    SliderAnimations.VERTICALSHUTTRANSFORMATION
+                10 ->
+                    SliderAnimations.ZOOMOUTTRANSFORMATION
                 else
                 ->
-                    SliderAnimations.ANTICLOCKSPINTRANSFORMATION
+                    SliderAnimations.SIMPLETRANSFORMATION
             }
 
         var slideIndicatorA =
@@ -277,7 +293,7 @@ public class AwesomeSlider : FrameLayout, CircularSliderHandle.CurrentPageListen
         list: ArrayList<SliderDataModel>,
         scaleType: ImageView.ScaleType,
         activity: Activity,
-        listener: OnSliderClickListener
+        listener: OnSliderClickListener?
     ) {
         for (it in list) {
             addSliderView(
