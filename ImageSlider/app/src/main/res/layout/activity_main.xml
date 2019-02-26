@@ -9,9 +9,16 @@
     <com.ramesh.awesomeslider.AwesomeSlider
             android:layout_width="match_parent"
             android:id="@+id/imageSlider"
-            android:layout_height="match_parent" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent">
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:awe_indicator_animation="SLIDE"
+            app:awe_slide_animation="FADETRANSFORMATION"
+            app:awe_scroll_time_sec="5"
+
+            app:layout_constraintBottom_toBottomOf="parent">
 
     </com.ramesh.awesomeslider.AwesomeSlider>
 </LinearLayout>

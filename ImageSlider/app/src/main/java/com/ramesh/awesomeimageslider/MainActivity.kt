@@ -15,10 +15,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        imageSlider.setIndicatorAnimation(IndicatorAnimations.SWAP) //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
-        imageSlider.setSliderTransformAnimation(SliderAnimations.FADETRANSFORMATION)
-        imageSlider.setScrollTimeInSec(5) //set scroll delay in seconds :
-
         setSliderViews()
     }
 
