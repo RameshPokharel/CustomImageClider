@@ -19,7 +19,7 @@ class SliderBuilder {
     protected var listener: OnSliderClickListener? = null
     protected var imageScaleType: ImageView.ScaleType? = ImageView.ScaleType.CENTER_CROP
 
-    constructor (context: Activity) {
+    constructor (context: Activity?) {
         this.context = WeakReference<Activity>(context)
     }
 

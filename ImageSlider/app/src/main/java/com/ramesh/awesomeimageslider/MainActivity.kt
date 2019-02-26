@@ -1,18 +1,15 @@
 package com.ramesh.awesomeimageslider
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.ramesh.awesomeslider.OnSliderClickListener
 import com.ramesh.awesomeslider.SliderDataModel
 import com.ramesh.awesomeslider.SliderView
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), OnSliderClickListener {
-    override fun onSliderClick(sliderView: SliderView) {
-        Toast.makeText(this, sliderView.imageUrl, Toast.LENGTH_SHORT).show()
-    }
+class MainActivity : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +26,7 @@ class MainActivity : AppCompatActivity(), OnSliderClickListener {
         imageSlider.setSliderData(
             list,
             ImageView.ScaleType.CENTER_CROP,
-            this, this
+            this
         )
 
     }

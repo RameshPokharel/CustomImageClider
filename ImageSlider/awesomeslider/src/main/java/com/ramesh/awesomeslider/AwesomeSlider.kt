@@ -2,6 +2,7 @@ package com.ramesh.awesomeslider
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Handler
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -14,9 +15,10 @@ import com.ramesh.awesomeslider.IndicatorView.SliderAnimations
 import com.ramesh.awesomeslider.IndicatorView.animation.type.AnimationType
 import com.ramesh.awesomeslider.Transformations.*
 import com.ramesh.awesomeslider.adapter.SliderAdapter
+import java.lang.ref.WeakReference
 import java.util.*
 
-public class AwesomeSlider : FrameLayout, CircularSliderHandle.CurrentPageListener {
+public class AwesomeSlider : FrameLayout, CircularSliderHandle.CurrentPageListener, OnSliderClickListener {
 
     private val DELAY_MS: Long = 2000
     private var mFlippingPagerAdapter: PagerAdapter? = null
@@ -28,6 +30,7 @@ public class AwesomeSlider : FrameLayout, CircularSliderHandle.CurrentPageListen
     private val handlerVal = Handler()
     private var flippingTimer: Timer? = null
     private var autoScrolling = true
+    protected var context: WeakReference<Activity>? = null
 
     var sliderView: SliderView? = null
 
@@ -145,6 +148,7 @@ public class AwesomeSlider : FrameLayout, CircularSliderHandle.CurrentPageListen
         scrollTimeInSec = a.getInt(R.styleable.AwesomeSlider_awe_scroll_time_sec, 3)
 
         startAutoCycle()
+
     }
 
     override fun onCurrentPageChanged(currentPosition: Int) {
@@ -292,16 +296,18 @@ public class AwesomeSlider : FrameLayout, CircularSliderHandle.CurrentPageListen
     fun setSliderData(
         list: ArrayList<SliderDataModel>,
         scaleType: ImageView.ScaleType,
-        activity: Activity,
-        listener: OnSliderClickListener?
+        activity: Activity
+        //  listener: OnSliderClickListener?
     ) {
+        this.context = WeakReference<Activity>(activity)
+
         for (it in list) {
             addSliderView(
-                SliderBuilder(activity)
+                SliderBuilder(this.context?.get())
                     .setImageUrl(it.imageUrl)
                     .setImageDrawable(it.imageDrawablel)
                     .setImageScaleType(scaleType)
-                    .setOnClickListener(listener)
+                    .setOnClickListener(this)
                     .setImageDescription(it.imageDescription)
                     .setSliderType(SliderType.DEFAULT)
                     .setShouldShowDescription(true)
@@ -312,5 +318,11 @@ public class AwesomeSlider : FrameLayout, CircularSliderHandle.CurrentPageListen
 
     }
 
+    override fun onSliderClick(sliderView: SliderView) {
+        var intent = Intent(context?.get(), AwesomeFullScreen::class.java)
+        intent.putExtra("imageUrl", sliderView.imageUrl)
+        context?.get()?.startActivity(intent)
+
+    }
 
 }
