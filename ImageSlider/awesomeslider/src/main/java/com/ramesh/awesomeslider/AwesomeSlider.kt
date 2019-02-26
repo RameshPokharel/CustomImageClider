@@ -1,10 +1,12 @@
 package com.ramesh.awesomeslider
 
+import android.app.Activity
 import android.content.Context
 import android.os.Handler
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
+import android.widget.ImageView
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.ramesh.awesomeslider.IndicatorView.PageIndicatorView
@@ -27,6 +29,7 @@ public class AwesomeSlider : FrameLayout, CircularSliderHandle.CurrentPageListen
     private var flippingTimer: Timer? = null
     private var autoScrolling = true
 
+    var sliderView: SliderView? = null
 
     constructor(context: Context) : super(context) {
         setLayout(context, null, null, null)
@@ -118,7 +121,7 @@ public class AwesomeSlider : FrameLayout, CircularSliderHandle.CurrentPageListen
                     IndicatorAnimations.SWAP
                 else
                 ->
-                    IndicatorAnimations.WORM
+                    IndicatorAnimations.SLIDE
 
             }
         setIndicatorAnimation(slideIndicatorA)
@@ -263,11 +266,35 @@ public class AwesomeSlider : FrameLayout, CircularSliderHandle.CurrentPageListen
 
     }
 
-    fun addSliderView(sliderView: SliderView) {
+    private fun addSliderView(sliderView: SliderView) {
         (mFlippingPagerAdapter as SliderAdapter).addSliderView(sliderView)
         if (pagerIndicator != null && mSliderPager != null) {
             pagerIndicator?.setViewPager(mSliderPager)
         }
     }
+
+    fun setSliderData(
+        list: ArrayList<SliderDataModel>,
+        scaleType: ImageView.ScaleType,
+        activity: Activity,
+        listener: OnSliderClickListener
+    ) {
+        for (it in list) {
+            addSliderView(
+                SliderBuilder(activity)
+                    .setImageUrl(it.imageUrl)
+                    .setImageDrawable(it.imageDrawablel)
+                    .setImageScaleType(scaleType)
+                    .setOnClickListener(listener)
+                    .setImageDescription(it.imageDescription)
+                    .setSliderType(SliderType.DEFAULT)
+                    .setShouldShowDescription(true)
+                    .build()
+            )
+        }
+
+
+    }
+
 
 }

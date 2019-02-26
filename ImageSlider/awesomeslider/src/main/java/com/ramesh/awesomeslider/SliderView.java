@@ -21,6 +21,7 @@ public abstract class SliderView {
     protected OnSliderClickListener onSliderClickListener;
     protected String description;
     protected String imageUrl;
+    protected Boolean shouldShowDescription;
     protected ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER_CROP;
     protected Context context;
 
@@ -28,15 +29,24 @@ public abstract class SliderView {
 
     abstract void bindViewData(View v, ImageView autoSliderImage);
 
-    SliderView(Context context) {
-        this.context = context;
+
+    SliderView(SliderBuilder builder) {
+        this.context = builder.getContext().get();
+        this.imageUrl = builder.getImageUrl();
+        if (builder.getImageDrawable() != null)
+            this.imageRes = builder.getImageDrawable();
+        this.scaleType = builder.getImageScaleType();
+        this.description = builder.getImageDescription();
+        this.onSliderClickListener = builder.getListener();
+        this.shouldShowDescription = builder.getShouldShowDescription();
     }
+
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    private void setDescription(String description) {
         this.description = description;
     }
 
@@ -48,17 +58,17 @@ public abstract class SliderView {
         return imageUrl;
     }
 
-    public void setImageUrl(String imageUrl) {
+    private void setImageUrl(String imageUrl) {
         if (imageRes != 0) {
             throw new IllegalStateException("Can't set multiple images");
         }
         this.imageUrl = imageUrl;
     }
 
-    public void setImageByte(byte[] imageByte) {
+    private void setImageByte(byte[] imageByte) {
         ContextWrapper wrapper = new ContextWrapper(context);
-        File file = new File(wrapper.getCacheDir().getAbsolutePath(),"Cached"+System.currentTimeMillis()+".jpeg");
-        Bitmap bitmap = BitmapFactory.decodeByteArray(imageByte, 0,imageByte.length);
+        File file = new File(wrapper.getCacheDir().getAbsolutePath(), "Cached" + System.currentTimeMillis() + ".jpeg");
+        Bitmap bitmap = BitmapFactory.decodeByteArray(imageByte, 0, imageByte.length);
         FileOutputStream out = null;
         try {
             out = new FileOutputStream(file);
@@ -77,7 +87,7 @@ public abstract class SliderView {
         this.imageUrl = String.valueOf(Uri.fromFile(file));
     }
 
-    public void setImageDrawable(int imageDrawable) {
+    private void setImageDrawable(int imageDrawable) {
         if (!TextUtils.isEmpty(imageUrl)) {
             throw new IllegalStateException("Can't set multiple images");
         }
@@ -88,16 +98,12 @@ public abstract class SliderView {
         return scaleType;
     }
 
-    public void setImageScaleType(ImageView.ScaleType scaleType) {
+    private void setImageScaleType(ImageView.ScaleType scaleType) {
         this.scaleType = scaleType;
     }
 
-    public void setOnSliderClickListener(OnSliderClickListener l) {
+    private void setOnSliderClickListener(OnSliderClickListener l) {
         onSliderClickListener = l;
-    }
-
-    public interface OnSliderClickListener {
-        void onSliderClick(SliderView sliderView);
     }
 
 }

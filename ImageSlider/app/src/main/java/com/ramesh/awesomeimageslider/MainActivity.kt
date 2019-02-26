@@ -4,13 +4,15 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.ramesh.awesomeslider.DefaultSliderView
-import com.ramesh.awesomeslider.IndicatorAnimations
-import com.ramesh.awesomeslider.IndicatorView.SliderAnimations
+import com.ramesh.awesomeslider.OnSliderClickListener
+import com.ramesh.awesomeslider.SliderDataModel
 import com.ramesh.awesomeslider.SliderView
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnSliderClickListener {
+    override fun onSliderClick(sliderView: SliderView) {
+        Toast.makeText(this, sliderView.imageUrl, Toast.LENGTH_SHORT).show()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,32 +22,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun setSliderViews() {
 
-        for (i in 0..2) {
-
-            val sliderView = DefaultSliderView(this)
-
-            when (i) {
-                0 -> sliderView.setImageDrawable(R.drawable.ic_launcher_background)
-                1 -> sliderView.setImageUrl("https://www.gstatic.com/webp/gallery3/2.png")
-                2 -> sliderView.setImageUrl("https://www.gstatic.com/webp/gallery3/4_webp_ll.png")
-            }
-
-            sliderView.setImageScaleType(ImageView.ScaleType.CENTER_CROP)
-            sliderView.setDescription(
-                "The quick brown fox jumps over the lazy dog.\n" +
-                        "Jackdaws love my big sphinx of quartz. " + (i + 1)
-            )
-
-            sliderView.setOnSliderClickListener(object : SliderView.OnSliderClickListener {
-                override fun onSliderClick(sliderView: SliderView) {
-                    Toast.makeText(this@MainActivity, "This is slider " + (i + 1), Toast.LENGTH_SHORT).show()
-
-                }
-            })
-
-            //at last add this view in your layout :
-            imageSlider.addSliderView(sliderView)
-        }
+        var list = ArrayList<SliderDataModel>()
+        list.add(SliderDataModel("https://www.gstatic.com/webp/gallery3/2.png", "Hello world"))
+        list.add(SliderDataModel(R.drawable.ic_launcher_background, "Hello world hello wrold"))
+        list.add(SliderDataModel("https://www.gstatic.com/webp/gallery3/4_webp_ll.png", ""))
+        imageSlider.setSliderData(
+            list,
+            ImageView.ScaleType.CENTER_CROP,
+            this, this
+        )
 
     }
 

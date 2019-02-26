@@ -1,7 +1,6 @@
 package com.ramesh.awesomeslider;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,24 +10,31 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 public class DefaultSliderView extends SliderView {
-
-    private String description;
     private int descriptionTextColor = Color.WHITE;
     private float descriptionTextSize = 1;
+
+    DefaultSliderView(SliderBuilder builder) {
+        super(builder);
+    }
 
     @Override
     public View getView() {
         @SuppressLint("InflateParams")
         View v = LayoutInflater.from(context).inflate(R.layout.image_slider_layout_item, null, true);
         ImageView autoSliderImage = v.findViewById(R.id.iv_auto_image_slider);
-       /* TextView tv_description = v.findViewById(R.id.tv_auto_image_slider);
-        tv_description.getBackground();
-        if (descriptionTextSize != 1) {
-            tv_description.setTextSize(descriptionTextSize);
+        TextView tv_description = v.findViewById(R.id.tv_auto_image_slider);
+        if (shouldShowDescription) {
+            tv_description.getBackground();
+            // if (descriptionTextSize != 1) {
+            //  tv_description.setTextSize(descriptionTextSize);
+            // }
+            tv_description.setTextColor(descriptionTextColor);
+            tv_description.setText(getDescription());
+            tv_description.setVisibility(View.VISIBLE);
+        } else {
+            tv_description.setVisibility(View.INVISIBLE);
         }
-        tv_description.setTextColor(descriptionTextColor);
-        tv_description.setText(getDescription());
-       */ bindViewData(v, autoSliderImage);
+        bindViewData(v, autoSliderImage);
         return v;
     }
 
@@ -54,14 +60,6 @@ public class DefaultSliderView extends SliderView {
         } catch (Exception exception) {
             Log.d("Exception", exception.getMessage());
         }
-    }
-
-    public DefaultSliderView(Context context) {
-        super(context);
-    }
-
-    public String getDescription() {
-        return description;
     }
 
     public void setDescription(String description) {
