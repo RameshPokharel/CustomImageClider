@@ -246,7 +246,8 @@ public class AwesomeSlider : FrameLayout, CircularSliderHandle.CurrentPageListen
                 HorizontalFlipTransformation()
             )
             SliderAnimations.POPTRANSFORMATION -> mSliderPager?.setPageTransformer(false, PopTransformation())
-            SliderAnimations.SIMPLETRANSFORMATION -> mSliderPager?.setPageTransformer(false, SimpleTransformation())
+            SliderAnimations.SIMPLETRANSFORMATION ->
+                mSliderPager?.setPageTransformer(false, SimpleTransformation())
             SliderAnimations.SPINNERTRANSFORMATION -> mSliderPager?.setPageTransformer(false, SpinnerTransformation())
             SliderAnimations.TOSSTRANSFORMATION -> mSliderPager?.setPageTransformer(false, TossTransformation())
             SliderAnimations.VERTICALFLIPTRANSFORMATION -> mSliderPager?.setPageTransformer(
@@ -261,7 +262,6 @@ public class AwesomeSlider : FrameLayout, CircularSliderHandle.CurrentPageListen
             else -> mSliderPager?.setPageTransformer(false, SimpleTransformation())
         }
 
-        mSliderPager?.setPageTransformer(false, AntiClockSpinTransformation())
 
     }
 
