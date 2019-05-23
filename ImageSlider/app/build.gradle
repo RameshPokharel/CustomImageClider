@@ -34,4 +34,6 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
     implementation project(':awesomeslider')
+    //implementation 'com.github.RameshPokharel:CustomImageSlider:v1.0-alpha'
+
 }

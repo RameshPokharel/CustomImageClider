@@ -3,6 +3,7 @@ package com.ramesh.awesomeslider
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Handler
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -74,6 +75,9 @@ public class AwesomeSlider : FrameLayout, CircularSliderHandle.CurrentPageListen
         mSliderPager = view.findViewById(R.id.vp_slider_layout)
         pagerIndicator = view.findViewById(R.id.pager_indicator)
         pagerIndicator?.setDynamicCount(true)
+        pagerIndicator?.setRadius(3)
+        pagerIndicator?.selectedColor=Color.parseColor("#69B353")
+        pagerIndicator?.unselectedColor=Color.parseColor("#ffffff")
 
         mFlippingPagerAdapter = SliderAdapter(context)
 
@@ -152,7 +156,7 @@ public class AwesomeSlider : FrameLayout, CircularSliderHandle.CurrentPageListen
     }
 
     override fun onCurrentPageChanged(currentPosition: Int) {
-        this.currentPage = currentPage
+        this.currentPage = currentPosition
     }
 
     private fun startAutoCycle() {
