@@ -1,0 +1,7 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AwesomeSliderTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    </style>
+
+</resources>
