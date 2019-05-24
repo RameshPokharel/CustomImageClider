@@ -26,12 +26,14 @@ class CircularSliderHandle implements ViewPager.OnPageChangeListener {
     @Override
     public void onPageScrollStateChanged(final int state) {
         int currentPage = mViewPager.getCurrentItem();
-        if (currentPage == mViewPager.getAdapter().getCount()-1 || currentPage == 0){
+        if (currentPage == mViewPager.getAdapter().getCount() - 1 || currentPage == 0) {
             int previousState = mCurrentPosition;
             mCurrentPosition = state;
+/*
             if (previousState == 1 && mCurrentPosition == 0){
                 mViewPager.setCurrentItem(currentPage == 0 ? mViewPager.getAdapter().getCount()-1 : 0);
             }
+*/
         }
     }
 
