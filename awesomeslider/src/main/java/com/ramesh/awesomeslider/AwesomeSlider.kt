@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Handler
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import android.widget.ImageView
@@ -18,6 +19,7 @@ import com.ramesh.awesomeslider.Transformations.*
 import com.ramesh.awesomeslider.adapter.SliderAdapter
 import java.lang.ref.WeakReference
 import java.util.*
+
 
 public class AwesomeSlider : FrameLayout, CircularSliderHandle.CurrentPageListener, OnSliderClickListener {
 
@@ -76,8 +78,13 @@ public class AwesomeSlider : FrameLayout, CircularSliderHandle.CurrentPageListen
         pagerIndicator = view.findViewById(R.id.pager_indicator)
         pagerIndicator?.setDynamicCount(true)
         pagerIndicator?.setRadius(3)
-        pagerIndicator?.selectedColor=Color.parseColor("#69B353")
-        pagerIndicator?.unselectedColor=Color.parseColor("#ffffff")
+
+        val typedValue = TypedValue()
+        context.getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true)
+        val color = typedValue.data
+
+        pagerIndicator?.selectedColor = color
+        pagerIndicator?.unselectedColor = Color.parseColor("#ffffff")
 
         mFlippingPagerAdapter = SliderAdapter(context)
 
