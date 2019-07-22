@@ -304,6 +304,10 @@ public class AwesomeSlider : FrameLayout, CircularSliderHandle.CurrentPageListen
         }
     }
 
+    fun clearSliderData() {
+        (mFlippingPagerAdapter as SliderAdapter).removeAllSliderViews()
+    }
+
     fun setSliderData(
         list: ArrayList<SliderDataModel>,
         scaleType: ImageView.ScaleType,
