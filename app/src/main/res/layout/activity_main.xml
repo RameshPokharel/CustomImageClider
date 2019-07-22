@@ -17,6 +17,7 @@
             app:awe_indicator_animation="SLIDE"
             app:awe_slider_animation="SIMPLETRANSFORMATION"
             app:awe_scroll_time_sec="5"
+            app:id_selectedColor="@color/colorAccent"
 
             app:layout_constraintBottom_toBottomOf="parent">
 

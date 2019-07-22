@@ -78,10 +78,11 @@ public class AwesomeSlider : FrameLayout, CircularSliderHandle.CurrentPageListen
         pagerIndicator = view.findViewById(R.id.pager_indicator)
         pagerIndicator?.setDynamicCount(true)
         pagerIndicator?.setRadius(3)
-
         val typedValue = TypedValue()
         context.getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true)
-        val color = typedValue.data
+
+        var selectedColor = a.getColor(R.styleable.AwesomeSlider_id_selectedColor, typedValue.data)
+        val color = selectedColor
 
         pagerIndicator?.selectedColor = color
         pagerIndicator?.unselectedColor = Color.parseColor("#ffffff")
