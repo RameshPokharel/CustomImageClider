@@ -3,6 +3,7 @@ package com.ramesh.awesomeslider.adapter;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 import com.ramesh.awesomeslider.SliderView;
 
@@ -55,6 +56,11 @@ public class SliderAdapter extends PagerAdapter {
         View v = imageSliderView.getView();
         container.addView(v);
         return v;
+    }
+
+    @Override
+    public int getItemPosition(@NonNull Object object) {
+        return PagerAdapter.POSITION_NONE;
     }
 
     @Override

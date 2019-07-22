@@ -1,6 +1,7 @@
 package com.ramesh.awesomeimageslider
 
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.ramesh.awesomeslider.SliderDataModel
@@ -13,6 +14,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSliderViews()
+        button.setOnClickListener(View.OnClickListener {
+            imageSlider.clearSliderData()
+            setSliderViews()
+        })
+
     }
 
     private fun setSliderViews() {
@@ -28,5 +34,6 @@ class MainActivity : AppCompatActivity() {
         )
 
     }
+
 
 }
