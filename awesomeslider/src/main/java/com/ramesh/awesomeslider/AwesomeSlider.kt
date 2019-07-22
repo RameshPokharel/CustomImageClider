@@ -76,7 +76,7 @@ public class AwesomeSlider : FrameLayout, CircularSliderHandle.CurrentPageListen
         )
         mSliderPager = view.findViewById(R.id.vp_slider_layout)
         pagerIndicator = view.findViewById(R.id.pager_indicator)
-        pagerIndicator?.setDynamicCount(true)
+        pagerIndicator?.setDynamicCount(false)
         pagerIndicator?.setRadius(3)
         val typedValue = TypedValue()
         context.getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true)

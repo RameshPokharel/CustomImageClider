@@ -31,6 +31,7 @@ public class SliderAdapter extends PagerAdapter {
     public void removeAllSliderViews() {
         sliderViews.clear();
         notifyDataSetChanged();
+
     }
 
     public SliderView getSliderView(int position) {
